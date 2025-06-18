@@ -18,7 +18,7 @@ const server = http.createServer(app);
 const io = require('socket.io')(server);
 
 server.listen(PORT, () => {
-    console.log(`Server running on http://localhost:${PORT}`);
+    console.log(`Server running on https://domainsleuth.netlify.app:${PORT}`);
 });
 if (!fs.existsSync(uploadDir)) fs.mkdirSync(uploadDir);
 if (!fs.existsSync(outputDir)) fs.mkdirSync(outputDir);
