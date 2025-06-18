@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Subdomain Test Results</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+    <h1>Test Results for <%= file %>
+    </h1>
+    <table>
+        <tr>
+            <th>Subdomain</th>
+            <th>Status</th>
+        </tr>
+        <% results.forEach(result=> { %>
+            <tr>
+                <td>
+                    <%= result.subdomain %>
+                </td>
+                <td>
+                    <%= result.status %>
+                </td>
+            </tr>
+            <% }); %>
+    </table>
+    <br>
+    <a href="/subdomain-checker">Go Back to Subdomain Checker</a>
+</body>
+
+</html>

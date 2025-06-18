@@ -1,0 +1,23 @@
+{
+  "name": "subdomain-checker",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^1.9.0",
+    "csv-parser": "^3.2.0",
+    "csv-writer": "^1.6.0",
+    "ejs": "^3.1.10",
+    "express": "^5.1.0",
+    "multer": "^1.4.5-lts.2",
+    "papaparse": "^5.5.2",
+    "ping": "^0.4.4",
+    "socket.io": "^4.8.1"
+  },
+  "description": ""
+}

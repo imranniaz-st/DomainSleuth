@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Subdomain Checker</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+</head>
+
+<body>
+    <h1>Subdomain Checker</h1>
+    <h3>Select a file to check subdomains</h3>
+    <form id="fileForm">
+        <select name="file" id="fileSelect">
+            <% files.forEach(file=> { %>
+                <option value="<%= file %>">
+                    <%= file %>
+                </option>
+                <% }); %>
+        </select>
+        <button type="submit">Test</button>
+    </form>
+
+    <div id="testResults">
+        <!-- Test results will be inserted here -->
+    </div>
+
+    <br>
+    <a href="/">Go Back to Home</a>
+
+    <script>
+        $(document).ready(function () {
+            const socket = io(); // Connect to Socket.io server
+
+            // Submit the form using AJAX
+            $('#fileForm').on('submit', function (e) {
+                e.preventDefault();
+
+                var selectedFile = $('#fileSelect').val();
+                if (!selectedFile) {
+                    alert('Please select a file.');
+                    return;
+                }
+
+                // Perform the AJAX request to start the test
+                $.ajax({
+                    url: '/test/' + selectedFile,  // URL to send the request
+                    method: 'GET',
+                    success: function (data) {
+                        // Handle initial data if needed
+                    },
+                    error: function (xhr, status, error) {
+                        console.error('Error:', error);
+                        alert('Error testing subdomains. Please try again.');
+                    }
+                });
+            });
+
+            // Listen for real-time updates via Socket.io
+            socket.on('subdomain-test', function (status) {
+                // Append each result as it comes in
+                const resultHtml = `<p>Subdomain: ${status.subdomain} | HTTP: ${status.http} | DNS: ${status.dns} | Ping: ${status.ping}</p>`;
+                $('#testResults').append(resultHtml);
+            });
+        });
+    </script>
+</body>
+
+</html>

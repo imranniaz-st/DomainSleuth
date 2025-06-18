@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>View JSON Files</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+    <h1>Converted JSON Files</h1>
+    <ul>
+        <% files.forEach(file=> { %>
+            <li><a href="/test/<%= file %>">
+                    <%= file %>
+                </a></li>
+            <% }); %>
+    </ul>
+    <br>
+    <a href="/">Go Back to Home</a>
+</body>
+
+</html>

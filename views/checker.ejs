@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Select JSON File to Test Subdomains</title>
+</head>
+
+<body>
+    <h2>Choose a Subdomain List (JSON)</h2>
+    <ul>
+        <% files.forEach(file=> { %>
+            <li><a href="/test/<%= file %>">
+                    <%= file %>
+                </a></li>
+            <% }) %>
+    </ul>
+</body>
+
+</html>

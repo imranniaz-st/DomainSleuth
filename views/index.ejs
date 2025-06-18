@@ -1,0 +1,85 @@
+    <!DOCTYPE html>
+    <html>
+            <link rel="stylesheet" href="/css/style.css">
+
+    <head>
+
+        <title>CSV to JSON & Subdomain Tester</title>
+        <style>
+            body {
+                font-family: Arial;
+                padding: 30px;
+                line-height: 1.6;
+            }
+
+            input[type="file"] {
+                margin-bottom: 10px;
+            }
+
+            button {
+                padding: 10px 20px;
+            }
+
+            .message {
+                margin-top: 20px;
+                color: green;
+            }
+
+            .routes {
+                margin-top: 40px;
+                padding-top: 20px;
+                border-top: 1px solid #ccc;
+            }
+
+            a {
+                text-decoration: none;
+                color: blue;
+            }
+        </style>
+    </head>
+
+    <body>
+        <h2>📂 CSV to JSON Converter</h2>
+        <form id="uploadForm" method="POST" action="/upload" enctype="multipart/form-data">
+            <input type="file" name="csvFile" accept=".csv" required />
+            <br />
+            <button type="submit">Convert to JSON</button>
+        </form>
+
+        <div class="message" id="message"></div>
+
+        <div class="routes">
+            <h3>🔗 All Available Routes:</h3>
+            <ul>
+                <li><a href="/">/ — Home Page (this page)</a></li>
+                <li><a href="/upload">/upload — Upload CSV to Convert (POST)</a></li>
+                <li><a href="/subdomain-checker">/subdomain-checker — View & Test Subdomain JSON Files</a></li>
+                <li><a href="/data">/data — View Converted JSON Files (static folder if served)</a></li>
+            </ul>
+        </div>
+
+        <script>
+            document.getElementById('uploadForm').addEventListener('submit', function (e) {
+                e.preventDefault();
+                const formData = new FormData(this);
+                fetch('/upload', {
+                    method: 'POST',
+                    body: formData
+                })
+                    .then(res => res.text())
+                    .then(msg => document.getElementById('message').innerHTML = msg)
+                    .catch(err => document.getElementById('message').innerText = '❌ Upload failed');
+            });
+        </script>
+        <div class="routes">
+            <h3>🔗 All Available Functions:</h3>
+            <button onclick="window.location.href='/'">🏠 Home</button>
+            <button onclick="window.location.href='/upload'">📤 Upload CSV</button>
+            <button onclick="window.location.href='/subdomain-checker'">🔍 Subdomain Checker</button>
+            <button onclick="window.location.href='/data'">📁 View JSON Files</button>
+            <button onclick="window.location.href='/about'">ℹ️ About</button>
+        </div>
+
+    </body>
+ 
+    </html>
